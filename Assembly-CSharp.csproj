@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{B342D93A-92BA-67CB-00E6-4C5EB6A27FDE}</ProjectGuid>
+    <ProjectGuid>{1C52B959-DF68-658A-DE14-54F08F08AFA5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -67,41 +67,45 @@
     <Compile Include="Assets\Scripts\Common\AudioHelper.cs" />
     <Compile Include="Assets\Scripts\Common\QuitGameorReloadLevel.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\FollowMouse.cs" />
     <Compile Include="Assets\Scripts\HealthIncrease.cs" />
     <Compile Include="Assets\Scripts\Invincibility.cs" />
     <Compile Include="Assets\Scripts\Killer.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PowerUpBase.cs" />
+    <Compile Include="Assets\Scripts\ProjectileBehavior.cs" />
+    <Compile Include="Assets\Scripts\SearchForEnemies.cs" />
     <Compile Include="Assets\Scripts\Slower.cs" />
     <Compile Include="Assets\Scripts\SpeedIncrease.cs" />
     <Compile Include="Assets\Scripts\TankController.cs" />
+    <Compile Include="Assets\Scripts\TestMoveTowards.cs" />
     <Compile Include="Assets\Scripts\Treasure.cs" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Scripting for Games 2/FriesenhahnAaron_HW01/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Fall2021/Scripting for Games 2/FriesenhahnAaron_P01_ScriptingForGames_2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Scripting for Games 2/FriesenhahnAaron_HW01/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Fall2021/Scripting for Games 2/FriesenhahnAaron_P01_ScriptingForGames_2/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Scripting for Games 2/FriesenhahnAaron_HW01/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Fall2021/Scripting for Games 2/FriesenhahnAaron_P01_ScriptingForGames_2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Scripting for Games 2/FriesenhahnAaron_HW01/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Fall2021/Scripting for Games 2/FriesenhahnAaron_P01_ScriptingForGames_2/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Scripting for Games 2/FriesenhahnAaron_HW01/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Fall2021/Scripting for Games 2/FriesenhahnAaron_P01_ScriptingForGames_2/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Scripting for Games 2/FriesenhahnAaron_HW01/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Fall2021/Scripting for Games 2/FriesenhahnAaron_P01_ScriptingForGames_2/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Scripting for Games 2/FriesenhahnAaron_HW01/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Fall2021/Scripting for Games 2/FriesenhahnAaron_P01_ScriptingForGames_2/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Scripting for Games 2/FriesenhahnAaron_HW01/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Fall2021/Scripting for Games 2/FriesenhahnAaron_P01_ScriptingForGames_2/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Scripting for Games 2/FriesenhahnAaron_HW01/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/aaron/Desktop/UnityProjects/Fall2021/Scripting for Games 2/FriesenhahnAaron_P01_ScriptingForGames_2/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Users/aaron/Desktop/UnityProjects/2019.2.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

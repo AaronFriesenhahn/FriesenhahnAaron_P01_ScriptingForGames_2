@@ -6,6 +6,12 @@ public class TankController : MonoBehaviour
 {
     [SerializeField] float _moveSpeed = .25f;
     [SerializeField] float _turnSpeed = 2f;
+    public float speed = 500f;
+
+    [SerializeField] GameObject _Projectile;
+    [SerializeField] ParticleSystem _MuzzleFlare;
+    [SerializeField] AudioSource _FireProjectile;
+    [SerializeField] Transform _EmitLocation;
 
     Rigidbody _rb = null;
 
@@ -41,5 +47,16 @@ public class TankController : MonoBehaviour
         Quaternion turnOffset = Quaternion.Euler(0, turnAmountThisFrame, 0);
         // apply quaternion to the rigidbody
         _rb.MoveRotation(_rb.rotation * turnOffset);
+    }
+
+    public void Update()
+    {
+        //fire projectile
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject projectile = Instantiate(_Projectile, _EmitLocation.position, _EmitLocation.rotation);
+            //fire straight forward instead of following mouse position
+            projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
+        }
     }
 }
