@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowMouse : MonoBehaviour
 {
     //the speed to move at
-    public float speed = 500f;
+    public float speed = 50f;
 
     private float originY;
 

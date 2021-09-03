@@ -13,6 +13,7 @@ public class ProjectileBehavior : MonoBehaviour
     int weaponDamage = 10;
 
     [SerializeField] ParticleSystem impactParticles;
+    [SerializeField] AudioClip impactSound;
 
     int addforce = 0;
 
@@ -31,10 +32,23 @@ public class ProjectileBehavior : MonoBehaviour
     //projectile destroys upon collision
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Hit an object.");
-        Destroy(gameObject);
+        if (collision.collider.tag == "Enemy")
+        {
+            Debug.Log("Hit an object.");
+            impactParticles.Play();
+
+            StartCoroutine(DestroyOnImpact());
+        }
+        if (collision.collider.tag != "Player")
+        {
+            Debug.Log("Hit an object.");
+            impactParticles.Play();
+
+            StartCoroutine(DestroyOnImpact());
+        }
     }
 
+    //destroys object after a certain amount of time
     void DestroyObject()
     {
         timeLeft -= Time.deltaTime;
@@ -42,6 +56,14 @@ public class ProjectileBehavior : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator DestroyOnImpact()
+    {
+        Debug.Log("Enumerator called.");
+        yield return new WaitForSeconds(.25f);
+        Debug.Log("Destroyed object.");
+        Destroy(gameObject);
     }
 
     private Vector3 GetPosition(Vector2 pos)

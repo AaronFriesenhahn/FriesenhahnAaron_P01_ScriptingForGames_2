@@ -10,7 +10,7 @@ public class TankController : MonoBehaviour
 
     [SerializeField] GameObject _Projectile;
     [SerializeField] ParticleSystem _MuzzleFlare;
-    [SerializeField] AudioSource _FireProjectile;
+    [SerializeField] AudioClip _FireProjectile;
     [SerializeField] Transform _EmitLocation;
 
     Rigidbody _rb = null;
@@ -54,6 +54,11 @@ public class TankController : MonoBehaviour
         //fire projectile
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            _MuzzleFlare.Play();
+            if (_FireProjectile != null)
+            {
+                AudioHelper.PlayClip2D(_FireProjectile, 1f);
+            }
             GameObject projectile = Instantiate(_Projectile, _EmitLocation.position, _EmitLocation.rotation);
             //fire straight forward instead of following mouse position
             projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 500);

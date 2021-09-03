@@ -24,7 +24,7 @@ public class SearchForEnemies : MonoBehaviour
     }
 
     //the speed to move at
-    public float speed = 5f;
+    public float speed = 50f;
     void Update()
     {
         GameObject[] EnemyArray;
@@ -43,15 +43,25 @@ public class SearchForEnemies : MonoBehaviour
             }
         }
 
-        // Move our position a step closer to the target.
-        float step = speed * Time.deltaTime; // calculate distance to move
-        transform.position = Vector3.MoveTowards(transform.position, closest.transform.position, step);
+        //Check if the enemy is within 5 meters?
+        if (Vector3.Distance(transform.position, closest.transform.position) < 5f)
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            //reset momentum
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            //add some momentum so it doesn't turn so drastically
+            rb.AddForce(transform.forward * 100);
+            // Move our position a step closer to the target.
+            float step = speed * Time.deltaTime; // calculate distance to move
+            transform.position = Vector3.MoveTowards(transform.position, closest.transform.position, step);
+        }
 
         // Check if the position of the cube and sphere are approximately equal.
         if (Vector3.Distance(transform.position, closest.transform.position) < 0.001f)
         {
             Debug.Log("destroy object.");
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
     }
