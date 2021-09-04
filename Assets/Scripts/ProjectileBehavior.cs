@@ -10,10 +10,10 @@ public class ProjectileBehavior : MonoBehaviour
 
     public Vector3 target;
 
-    int weaponDamage = 10;
+    public int weaponDamage = 1;
 
-    [SerializeField] ParticleSystem impactParticles;
-    [SerializeField] AudioClip impactSound;
+    public ParticleSystem impactParticles;
+    public AudioClip impactSound;
 
     int addforce = 0;
 
@@ -30,21 +30,31 @@ public class ProjectileBehavior : MonoBehaviour
     }
 
     //projectile destroys upon collision
-    private void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Enemy")
         {
             Debug.Log("Hit an object.");
-            impactParticles.Play();
-
-            StartCoroutine(DestroyOnImpact());
+            if (impactParticles != null)
+            {
+                impactParticles = Instantiate(impactParticles,
+                    transform.position, Quaternion.identity);
+            }
+            AudioHelper.PlayClip2D(impactSound, 1f);
+            gameObject.SetActive(false);
+            //StartCoroutine(DestroyOnImpact());
         }
         if (collision.collider.tag != "Player")
         {
             Debug.Log("Hit an object.");
-            impactParticles.Play();
-
-            StartCoroutine(DestroyOnImpact());
+            if (impactParticles != null)
+            {
+                impactParticles = Instantiate(impactParticles,
+                    transform.position, Quaternion.identity);
+            }
+            AudioHelper.PlayClip2D(impactSound, 1f);
+            gameObject.SetActive(false);
+            //StartCoroutine(DestroyOnImpact());
         }
     }
 

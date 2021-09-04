@@ -125,4 +125,10 @@ MonoBehaviour:
   _damageAmount: 1
   _impactParticles: {fileID: 0}
   _impactSound: {fileID: 8300000, guid: 3f7f75b844f02bf43b25912d5daccb16, type: 3}
+  _PlayerTransform: {fileID: 0}
+  _deathSound: {fileID: 0}
+  _MaxHealth: 2
+  _currentHealth: 0
   _speedAmount: 0.1
+  _PowerUpDuration: 2
+  _powerUpSound: {fileID: 0}

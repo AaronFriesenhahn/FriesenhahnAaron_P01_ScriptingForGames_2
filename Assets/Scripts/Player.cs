@@ -6,8 +6,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(TankController))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] int _maxHealth = 3;
-    int _currentHealth;
+    public int _maxHealth = 3;
+    public int _currentHealth;
     [SerializeField] int _treasureCount = 0;
     int _currentTreasure;
     [SerializeField] ParticleSystem _deathParticles;
@@ -93,6 +93,14 @@ public class Player : MonoBehaviour
         if (_deathSound != null)
         {
             AudioHelper.PlayClip2D(_deathSound, 1f);
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "EnemyProjectile")
+        {
+            DecreaseHealth(1);
         }
     }
 }

@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 1150250385598063374}
   - component: {fileID: 6096343551286529195}
   m_Layer: 0
-  m_Name: Projectile_with_Particles 1
-  m_TagString: Untagged
+  m_Name: Projectile
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,8 +127,9 @@ MonoBehaviour:
   thrust: 500
   rb: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
+  weaponDamage: 1
   impactParticles: {fileID: 6895362516912719296}
-  impactSound: {fileID: 8300000, guid: 7f8177ffb1d36d64bb53b16a276995d4, type: 3}
+  impactSound: {fileID: 8300000, guid: d76f8525a6487934083f3810e2d24409, type: 3}
 --- !u!114 &6096343551286529195
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class TankController : MonoBehaviour
     [SerializeField] Transform _EmitLocation;
 
     Rigidbody _rb = null;
+    private bool allowfire = true;
 
     public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
 
@@ -52,8 +53,9 @@ public class TankController : MonoBehaviour
     public void Update()
     {
         //fire projectile
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && allowfire==true)
         {
+            allowfire = false;
             _MuzzleFlare.Play();
             if (_FireProjectile != null)
             {
@@ -62,6 +64,14 @@ public class TankController : MonoBehaviour
             GameObject projectile = Instantiate(_Projectile, _EmitLocation.position, _EmitLocation.rotation);
             //fire straight forward instead of following mouse position
             projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
+            StartCoroutine(FireCooldown());
         }
+    }
+
+    IEnumerator FireCooldown()
+    {
+        Debug.Log("Cooldown activated.");
+        yield return new WaitForSeconds(1f);
+        allowfire = true;
     }
 }

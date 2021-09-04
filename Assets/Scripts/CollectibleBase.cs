@@ -31,7 +31,7 @@ public abstract class CollectibleBase : MonoBehaviour
         rb.MoveRotation(_rb.rotation * turnOffset);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         Player player = other.gameObject.GetComponent<Player>();
         if(player != null)
@@ -49,7 +49,7 @@ public abstract class CollectibleBase : MonoBehaviour
         }
     }
 
-    private void Feedback()
+    protected virtual void Feedback()
     {
         //particles
         if(_collectParticles != null)
