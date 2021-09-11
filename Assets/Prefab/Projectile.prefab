@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8000967122313998974}
   - component: {fileID: 6791864930432593438}
   - component: {fileID: 1941041414822983051}
-  - component: {fileID: 1150250385598063374}
   - component: {fileID: 6096343551286529195}
+  - component: {fileID: -8767807955014302087}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Projectile
@@ -112,24 +112,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
---- !u!114 &1150250385598063374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4419911500634239837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b01c9b8a77b1f547a92720310a79d27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrust: 500
-  rb: {fileID: 0}
-  target: {x: 0, y: 0, z: 0}
-  weaponDamage: 1
-  impactParticles: {fileID: 6895362516912719296}
-  impactSound: {fileID: 8300000, guid: d76f8525a6487934083f3810e2d24409, type: 3}
 --- !u!114 &6096343551286529195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +126,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _searchingObject: {fileID: 0}
   speed: 5
+--- !u!114 &-8767807955014302087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4419911500634239837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b01c9b8a77b1f547a92720310a79d27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectileSpeed: 0.25
+  rb: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
+  weaponDamage: 1
+  impactParticles: {fileID: 288401561107790826, guid: 0b15ed6e1d9426c4c9908a85cb10dcd2,
+    type: 3}
+  impactSound: {fileID: 8300000, guid: b2edcd309803e5141bade876d1319f3e, type: 3}
 --- !u!1001 &6607242568769945130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,6 +156,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ParticleSystem_ParticleImpact
+      objectReference: {fileID: 0}
+    - target: {fileID: 288401561107790826, guid: 0b15ed6e1d9426c4c9908a85cb10dcd2,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 533825304744431704, guid: 0b15ed6e1d9426c4c9908a85cb10dcd2,
         type: 3}
@@ -211,22 +217,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 288401561107790826, guid: 0b15ed6e1d9426c4c9908a85cb10dcd2,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b15ed6e1d9426c4c9908a85cb10dcd2, type: 3}
 --- !u!4 &6690417570978672242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 533825304744431704, guid: 0b15ed6e1d9426c4c9908a85cb10dcd2,
-    type: 3}
-  m_PrefabInstance: {fileID: 6607242568769945130}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &6895362516912719296 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 288401561107790826, guid: 0b15ed6e1d9426c4c9908a85cb10dcd2,
     type: 3}
   m_PrefabInstance: {fileID: 6607242568769945130}
   m_PrefabAsset: {fileID: 0}

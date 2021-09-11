@@ -12,9 +12,9 @@ public class QuitGameorReloadLevel : MonoBehaviour
             Debug.Log("Escape key was pressed");
             Application.Quit();
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            Debug.Log("R key was pressed");
+            Debug.Log("Backspace key was pressed");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }

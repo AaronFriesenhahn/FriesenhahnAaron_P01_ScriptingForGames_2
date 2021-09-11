@@ -3,49 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Health))]
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] int _damageAmount = 1;
+    public int damage = 1;
     public ParticleSystem _impactParticles;
     [SerializeField] AudioClip _impactSound;
     public Transform _PlayerTransform;
 
     public AudioClip _deathSound;
 
-    Rigidbody _rb;
-    public int _MaxHealth = 1;
-    public int _currentHealth;
+    Health _healthSystem;
 
-    float speed = 2f;
+    Rigidbody _rb;
+
+    float speed = 2.5f;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-        _currentHealth = _MaxHealth;
+        _healthSystem = GetComponent<Health>();
     }
 
-    private void OnCollisionEnter(Collision other)
+    public void Update()
     {
-        Player player = other.gameObject.GetComponent<Player>();
+        if (_healthSystem.KillObject == true)
+        {
+            DeathFeedback();
+        }
+    }
+
+    protected virtual void OnCollisionEnter(Collision collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
         if (player != null)
         {
-            PlayerImpact(player);
+            IDamageable hit = (IDamageable)collision.gameObject.GetComponent(typeof(IDamageable));
+            if (hit != null)
+            {
+                hit.TakeDamage(damage);
+            }
             ImpactFeedback();
         }
-        else if (other.collider.tag == "Projectile")
-        {
-            Health(_damageAmount);
-            Debug.Log("Decrease enemy health.");
-        }
-
     }
 
-    protected virtual void PlayerImpact(Player player)
-    {
-        player.DecreaseHealth(_damageAmount);
-    }
-
-    private void ImpactFeedback()
+    public void ImpactFeedback()
     {
         //particles
         if (_impactParticles != null)
@@ -77,16 +79,6 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
     }
 
-    public void Health(int amount)
-    {
-        _currentHealth -= amount;
-        Debug.Log("Enemy's health: " + _currentHealth);
-        if (_currentHealth <= 0)
-        {
-            DeathFeedback();
-        }
-    }
-
     protected virtual void DeathFeedback()
     {
         if (_impactParticles != null)
@@ -100,4 +92,6 @@ public class Enemy : MonoBehaviour
         }
         gameObject.SetActive(false);
     }
+
+
 }

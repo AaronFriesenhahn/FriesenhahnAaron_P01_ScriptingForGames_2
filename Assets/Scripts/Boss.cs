@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,8 +18,7 @@ public class Boss : Enemy
     [SerializeField] Transform _BossDestination1;
     [SerializeField] Transform _BossDestination2;
 
-    float speed = 3f;
-    public int _damageAmount = 2;
+    [SerializeField] AudioClip _hitSound;
 
     int minionsSpawned = 0;
     int movingStarted = 0;
@@ -28,16 +28,27 @@ public class Boss : Enemy
 
     private bool allowfire = true;
 
-    // Start is called before the first frame update
-    void Start()
+    Health _healthSystem;
+
+    private void Awake()
     {
-        
+        _healthSystem = GetComponent<Health>();
+    }
+
+    private void Update()
+    {
+        if (_healthSystem.KillObject == true)
+        {
+            DeathFeedback();
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        Debug.Log("Updating boss...");
         Move();
+        Debug.Log(_healthSystem._currentHealth);
     }
 
     protected override void Move()
@@ -49,7 +60,7 @@ public class Boss : Enemy
             _tankTopToLookAtPlayer.transform.LookAt(targetPosition);
         }
         // if health is normal, perform a patrol and fire at player.
-        if (_currentHealth >2)
+        if (_healthSystem._currentHealth == _healthSystem._maxHealth)
         {
             FireAtPlayer();
             //move to Destination1
@@ -80,9 +91,10 @@ public class Boss : Enemy
                 Debug.Log("reached destination 2.");
             }
         }
-        // if health is 2, move towards player and ram them
-        else if (_currentHealth == 2)
+        // if health is 4 or 3, move towards player and ram them
+        else if (_healthSystem._currentHealth == 4 || _healthSystem._currentHealth == 3)
         {
+            //activate trail effect?
             if (movingStarted == 0)
             {
                 Debug.Log("Boss is moving.");
@@ -90,17 +102,19 @@ public class Boss : Enemy
             }
             if (rammedPlayer == 0)
             {
+                float speed = 10f;
                 var targetPosition = new Vector3(_PlayerTransform.position.x, transform.position.y, _PlayerTransform.position.z);
                 float step = speed * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
             }
         }
-        //if health is 1, spawn minions
-        else if (_currentHealth == 1 && allowfire == true)
-        {
+        //if health is 2 or 1, spawn minions
+        else if (_healthSystem._currentHealth == 2 && allowfire == true || _healthSystem._currentHealth == 1 && allowfire == true )
+        {            
             FireAtPlayer();
             if (minionsSpawned == 0)
             {
+                //StartCoroutine(PauseBeforeSpawning());
                 Debug.Log("Spawn minion!");
                 _minionToSpawn = Instantiate(_minionToSpawn, transform.position + (transform.forward * 2), transform.rotation);
                 _minionToSpawn = Instantiate(_minionToSpawn, transform.position + (transform.right * 2), transform.rotation);
@@ -109,6 +123,13 @@ public class Boss : Enemy
             }
         }
     }
+
+    IEnumerator PauseBeforeSpawning()
+    {
+        yield return new WaitForSeconds(2f);
+        //player warning particles
+    }
+
     protected override void DeathFeedback()
     {
         if (_deathParticles != null)
@@ -120,12 +141,27 @@ public class Boss : Enemy
         {
             AudioHelper.PlayClip2D(_deathSound, 1f);
         }
+        
         gameObject.SetActive(false);
     }
 
-    protected override void PlayerImpact(Player player)
+    protected override void OnCollisionEnter(Collision collision)
     {
-        player.DecreaseHealth(_damageAmount);
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player != null)
+        {
+            IDamageable hit = (IDamageable)collision.gameObject.GetComponent(typeof(IDamageable));
+            if (hit != null)
+            {
+                hit.TakeDamage(damage);
+            }
+            ImpactFeedback();
+            PlayerImpact();
+        }
+    }
+
+    private void PlayerImpact()
+    {
         rammedPlayer = 1;
         if (rammedPlayer == 1)
         {
@@ -155,7 +191,7 @@ public class Boss : Enemy
             AudioHelper.PlayClip2D(_enemyFire, 1f);
             //instantiate EnemyProjectile towards player
             GameObject projectile = Instantiate(EnemyProjectile, EmitLocation.position, EmitLocation.rotation);
-            projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
+
             allowfire = false;
             StartCoroutine(PauseBetweenShots());
         }
@@ -166,5 +202,12 @@ public class Boss : Enemy
         Debug.Log("Pause!");
         yield return new WaitForSeconds(2f);
         allowfire = true;
+    }
+
+    public void HitFeedback()
+    {
+        //play noise
+        AudioHelper.PlayClip2D(_hitSound, 1f);
+        //flash colors
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3552343947178810382}
   - component: {fileID: 3552343947178810383}
   - component: {fileID: 3552343947178810380}
-  - component: {fileID: 3552343947178810371}
+  - component: {fileID: 8866360389436801604}
   m_Layer: 0
   m_Name: EnemyProjectile
   m_TagString: EnemyProjectile
@@ -110,7 +110,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
---- !u!114 &3552343947178810371
+--- !u!114 &8866360389436801604
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +125,6 @@ MonoBehaviour:
   thrust: 500
   rb: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
-  weaponDamage: 1
-  impactParticles: {fileID: 288401561107790826, guid: 0b15ed6e1d9426c4c9908a85cb10dcd2,
-    type: 3}
-  impactSound: {fileID: 8300000, guid: 44dc684d78f779f47be6d24b7d061989, type: 3}
+  damage: 1
+  impactParticles: {fileID: 0}
+  impactSound: {fileID: 0}

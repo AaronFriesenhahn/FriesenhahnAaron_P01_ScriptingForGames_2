@@ -10,7 +10,7 @@ public class ProjectileBehavior : MonoBehaviour
 
     public Vector3 target;
 
-    public int weaponDamage = 1;
+    public int damage = 1;
 
     public ParticleSystem impactParticles;
     public AudioClip impactSound;
@@ -22,6 +22,7 @@ public class ProjectileBehavior : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Move();        
     }
 
     void FixedUpdate()
@@ -29,11 +30,23 @@ public class ProjectileBehavior : MonoBehaviour
         DestroyObject();
     }
 
+    protected virtual void Move()
+    {
+        //fire straight forward
+        rb.GetComponent<Rigidbody>().AddForce(transform.forward * thrust);
+    }
+
     //projectile destroys upon collision
     protected virtual void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Enemy")
         {
+            //does damage to hit object
+            IDamageable hit = (IDamageable)collision.gameObject.GetComponent(typeof(IDamageable));
+            if (hit != null)
+            {
+                hit.TakeDamage(damage);
+            }
             Debug.Log("Hit an object.");
             if (impactParticles != null)
             {
@@ -46,6 +59,12 @@ public class ProjectileBehavior : MonoBehaviour
         }
         if (collision.collider.tag != "Player")
         {
+            //does damage to hit object
+            IDamageable hit = (IDamageable)collision.gameObject.GetComponent(typeof(IDamageable));
+            if (hit != null)
+            {
+                hit.TakeDamage(damage);
+            }
             Debug.Log("Hit an object.");
             if (impactParticles != null)
             {

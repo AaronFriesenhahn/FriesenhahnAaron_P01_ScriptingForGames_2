@@ -64,25 +64,27 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BarrierLogic.cs" />
     <Compile Include="Assets\Scripts\Boss.cs" />
-    <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\CollectibleBase.cs" />
+    <Compile Include="Assets\Scripts\Collectibles\CollectibleBase.cs" />
+    <Compile Include="Assets\Scripts\Collectibles\HealthIncrease.cs" />
+    <Compile Include="Assets\Scripts\Collectibles\Invincibility.cs" />
+    <Compile Include="Assets\Scripts\Collectibles\PowerUpBase.cs" />
+    <Compile Include="Assets\Scripts\Collectibles\SpeedIncrease.cs" />
+    <Compile Include="Assets\Scripts\Collectibles\Treasure.cs" />
     <Compile Include="Assets\Scripts\Common\AudioHelper.cs" />
+    <Compile Include="Assets\Scripts\Common\CameraController.cs" />
     <Compile Include="Assets\Scripts\Common\QuitGameorReloadLevel.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\EnemyProjectile.cs" />
     <Compile Include="Assets\Scripts\FollowMouse.cs" />
-    <Compile Include="Assets\Scripts\HealthIncrease.cs" />
-    <Compile Include="Assets\Scripts\Invincibility.cs" />
+    <Compile Include="Assets\Scripts\Health.cs" />
+    <Compile Include="Assets\Scripts\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Killer.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\PowerUpBase.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Player\TankController.cs" />
     <Compile Include="Assets\Scripts\ProjectileBehavior.cs" />
     <Compile Include="Assets\Scripts\SearchForEnemies.cs" />
     <Compile Include="Assets\Scripts\Slower.cs" />
-    <Compile Include="Assets\Scripts\SpeedIncrease.cs" />
-    <Compile Include="Assets\Scripts\TankController.cs" />
     <Compile Include="Assets\Scripts\TestMoveTowards.cs" />
-    <Compile Include="Assets\Scripts\Treasure.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/aaron/Desktop/UnityProjects/Fall2021/Scripting for Games 2/FriesenhahnAaron_P01_ScriptingForGames_2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
