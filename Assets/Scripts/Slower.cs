@@ -26,27 +26,22 @@ public class Slower : Enemy
 
     }
 
-    void FixedUpdate()
-    {
-        Move();
-    }
-
     protected override void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Player")
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player != null)
         {
-            Player player = collision.gameObject.GetComponent<Player>();
-            if (player != null)
+            IDamageable hit = (IDamageable)collision.gameObject.GetComponent(typeof(IDamageable));
+            if (hit != null)
             {
-                IDamageable hit = (IDamageable)collision.gameObject.GetComponent(typeof(IDamageable));
-                if (hit != null)
-                {
-                    //hit.TakeDamage(damage);
-                }
-                PlayerImpact(player);
+                //hit.TakeDamage(damage);
             }
+            PlayerImpact(player);
         }
-   
+        else if(collision.collider.tag == "Projectile")
+        {
+            DeathFeedback();
+        }
     }
 
     private void PlayerImpact(Player player)
@@ -122,10 +117,5 @@ public class Slower : Enemy
             controller.MoveSpeed = _originalMoveSpeed;
             AudioHelper.PlayClip2D(_powerUpSound, 1f);
         }
-        var slowerMesh = gameObject.GetComponent<MeshRenderer>();
-        var slowerCollider = gameObject.GetComponent<Collider>();
-
-        slowerMesh.enabled = false;
-        slowerCollider.enabled = false;
     }
 }

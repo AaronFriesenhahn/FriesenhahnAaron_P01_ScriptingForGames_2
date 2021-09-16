@@ -57,7 +57,7 @@ public class ProjectileBehavior : MonoBehaviour
             gameObject.SetActive(false);
             //StartCoroutine(DestroyOnImpact());
         }
-        if (collision.collider.tag != "Player")
+        else if (collision.collider.tag != "Player")
         {
             //does damage to hit object
             IDamageable hit = (IDamageable)collision.gameObject.GetComponent(typeof(IDamageable));

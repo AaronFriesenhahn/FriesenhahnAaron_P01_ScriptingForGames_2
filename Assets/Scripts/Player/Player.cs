@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,12 +15,15 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip _deathSound;
 
     [SerializeField] Material TankBodyMaterial;
-    
+
     public bool invincible = false;
     public bool SpeedActivated = false;
 
     public Text _TreasureCountText;
     public Text _HealthCountText;
+    public GameObject DamageImage1;
+    public GameObject DamageImage2;
+    public GameObject _camera;
 
     TankController _tankController;
     Health _healthSystem;
@@ -32,26 +36,19 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        SetHealthCountText();
+        //SetHealthCountText();
         SetTreasureCountText();
     }
 
     private void Update()
     {
-        SetHealthCountText();
-        if (_healthSystem.KillObject == true)
-        {
-            DeathFeedback();
-        }
+        //SetHealthCountText();
         _healthSystem.invincible = invincible;
     }
 
     public void IncreaseHealth(int amount)
     {
-        _healthSystem._currentHealth = _healthSystem._currentHealth + amount;
-        _healthSystem._currentHealth = Mathf.Clamp(_healthSystem._currentHealth, 0, _healthSystem._maxHealth);
-        Debug.Log("Player's health: " + _healthSystem._currentHealth);
-        SetHealthCountText();
+        _healthSystem.IncreaseHealth(amount);
     }
 
     public void TreasureCount(int amount)
@@ -77,12 +74,23 @@ public class Player : MonoBehaviour
         {
             HitFeedback();
         }
+        else if (_healthSystem._currentHealth == 0)
+        {
+            DeathFeedback();
+        }
+        else if (collision.collider.tag == "Enemy")
+        {
+            HitFeedback();
+        }
     }
 
     public void HitFeedback()
     {
         //play noise
         AudioHelper.PlayClip2D(_hitSound, 1f);
+        //camera shake
+        StartCoroutine(ShakeCamera());
+        //flashing screen
         StartCoroutine(HitFlash());
     }
 
@@ -93,19 +101,25 @@ public class Player : MonoBehaviour
 
     IEnumerator HitFlash()
     {
-        GameObject TankBody = GameObject.Find("Tank/Art/Body");
-        var TankBodyRenderer = TankBody.GetComponent<Renderer>();
-        //flash colors?
-        Debug.Log("Hit. Applying Visual Feedback.");
-        TankBodyRenderer.material.SetColor("_Color", Color.white);
+        DamageImage1.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        TankBodyRenderer.material.SetColor("_Color", Color.red);
-        Debug.Log("Red.");
+        DamageImage1.SetActive(false);
+        DamageImage2.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        TankBodyRenderer.material.SetColor("_Color", Color.white);
-        Debug.Log("White.");
+        DamageImage2.SetActive(false);
+    }
+
+    IEnumerator ShakeCamera()
+    {
+        _camera.transform.Rotate(0, 0, 15);
         yield return new WaitForSeconds(0.1f);
-        TankBodyRenderer.material = TankBodyMaterial;
+        _camera.transform.Rotate(0, 0, -15);
+        yield return new WaitForSeconds(0.1f);
+        _camera.transform.Rotate(0, 0, 15);
+        yield return new WaitForSeconds(0.1f);
+        _camera.transform.Rotate(0, 0, -15);
+        yield return new WaitForSeconds(0.1f);
+        _camera.transform.Rotate(0, 0, 0);
     }
 
     private void DeathFeedback()
@@ -121,7 +135,6 @@ public class Player : MonoBehaviour
         {
             AudioHelper.PlayClip2D(_deathSound, 1f);
         }
-        gameObject.SetActive(false);
     }
 }
 

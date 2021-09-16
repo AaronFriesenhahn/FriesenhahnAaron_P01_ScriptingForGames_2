@@ -45,6 +45,10 @@ public class Enemy : MonoBehaviour
             }
             ImpactFeedback();
         }
+        else if (collision.collider.tag == "Projectile")
+        {
+            DeathFeedback();
+        }
     }
 
     public void ImpactFeedback()

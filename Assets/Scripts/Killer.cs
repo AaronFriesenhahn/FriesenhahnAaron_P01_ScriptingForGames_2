@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class Killer : Enemy
 {
-    protected override void DeathFeedback()
-    {
-        //none
-    }
+
 }

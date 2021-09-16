@@ -35,14 +35,6 @@ public class Boss : Enemy
         _healthSystem = GetComponent<Health>();
     }
 
-    private void Update()
-    {
-        if (_healthSystem.KillObject == true)
-        {
-            DeathFeedback();
-        }
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -157,6 +149,10 @@ public class Boss : Enemy
             }
             ImpactFeedback();
             PlayerImpact();
+        }
+        else if (collision.collider.tag == "Projectile" && _healthSystem._currentHealth == 0)
+        {
+            DeathFeedback();
         }
     }
 

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4437377357990626898}
   m_Layer: 0
   m_Name: Killer
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,11 +124,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 100
-  _impactParticles: {fileID: 0}
-  _impactSound: {fileID: 0}
+  _impactParticles: {fileID: 2658144747778798339, guid: 6ba510d4957c56f4fba5f5ff01c2ae08,
+    type: 3}
+  _impactSound: {fileID: 8300000, guid: 44dc684d78f779f47be6d24b7d061989, type: 3}
   _PlayerTransform: {fileID: 5174107530019977249, guid: cb8d04917050b9249ac9abee4b6adf8b,
     type: 3}
-  _deathSound: {fileID: 0}
+  _deathSound: {fileID: 8300000, guid: 7f8177ffb1d36d64bb53b16a276995d4, type: 3}
 --- !u!114 &4437377357990626898
 MonoBehaviour:
   m_ObjectHideFlags: 0

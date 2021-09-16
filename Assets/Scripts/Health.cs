@@ -10,6 +10,11 @@ public class Health : MonoBehaviour, IDamageable
     public bool KillObject = false;
     string ObjectName;
 
+    public event Action<int> Damaged = delegate { };
+    public event Action<int> Healed = delegate { };
+    public event Action HealthAt50Percent = delegate { };
+    //public event Action Killed = delegate { };
+
     [SerializeField] ParticleSystem _hitParticles;
 
     public bool invincible = false;
@@ -24,7 +29,10 @@ public class Health : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        
+        if (_currentHealth <= (_maxHealth / 2))
+        {
+            At50PercentHealth();
+        }
     }
 
     public void TakeDamage(int damage)
@@ -32,11 +40,8 @@ public class Health : MonoBehaviour, IDamageable
         if (invincible == false)
         {
             _currentHealth -= damage;
-            //HitFeedback();
-            Debug.Log(ObjectName + "'s Health: " + _currentHealth);
+            Damaged.Invoke(damage);
             HitFlash();
-
-
             if (_currentHealth <= 0)
             {
                 _currentHealth = 0;
@@ -45,19 +50,25 @@ public class Health : MonoBehaviour, IDamageable
         }
     }
 
+    public void IncreaseHealth(int value)
+    {
+        _currentHealth += value;
+        _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
+        Healed.Invoke(value);
+    }
+
+    public void At50PercentHealth()
+    {
+        HealthAt50Percent.Invoke();
+    }
+
     private void Kill()
     {
-        KillObject = true;
-        var objectMesh = gameObject.GetComponent<MeshRenderer>();
-        var objectCollider = gameObject.GetComponent<Collider>();
-
-        objectMesh.enabled = false;
-        objectCollider.enabled = false;
+        gameObject.SetActive(false);
     }
 
     private void HitFlash()
     {
-        Debug.Log("Hit. Applying Visual Feedback.");
         _hitParticles = Instantiate(_hitParticles, transform.position, Quaternion.identity);
     }
 }

@@ -18,7 +18,7 @@ public class BarrierLogic : MonoBehaviour
         GameObject[] EnemyArray;
         EnemyArray = GameObject.FindGameObjectsWithTag("Enemy");
         //if the array is empty, destroy object
-        if (EnemyArray.Length == 0)
+        if (EnemyArray.Length == 1)
         {
             Destroy(gameObject);
         }
