@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4260490591785868372}
   - component: {fileID: 4260490591785868373}
   - component: {fileID: 4260490591785868374}
-  - component: {fileID: 4260490591785868375}
   - component: {fileID: 4260490591785868376}
   - component: {fileID: 4260490591785868381}
   - component: {fileID: 372325399915611521}
+  - component: {fileID: -160883151383097790}
   m_Layer: 0
   m_Name: Slower
   m_TagString: Enemy
@@ -82,19 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &4260490591785868375
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4260490591785868378}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4260490591785868376
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,3 +138,16 @@ MonoBehaviour:
   _hitParticles: {fileID: 3432634598425089549, guid: fc20269ad763ecd43bbdf328b92b29b3,
     type: 3}
   invincible: 0
+--- !u!65 &-160883151383097790
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4260490591785868378}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 681268091995207325}
   - component: {fileID: 681268091995207324}
   - component: {fileID: 681268091995207327}
-  - component: {fileID: 681268091995207326}
   - component: {fileID: 681268091995207313}
   - component: {fileID: 681268091995207312}
   - component: {fileID: 4437377357990626898}
+  - component: {fileID: -1071688837165934185}
   m_Layer: 0
   m_Name: Killer
   m_TagString: Enemy
@@ -82,19 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &681268091995207326
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 681268091995207315}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &681268091995207313
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -127,8 +114,7 @@ MonoBehaviour:
   _impactParticles: {fileID: 2658144747778798339, guid: 6ba510d4957c56f4fba5f5ff01c2ae08,
     type: 3}
   _impactSound: {fileID: 8300000, guid: 44dc684d78f779f47be6d24b7d061989, type: 3}
-  _PlayerTransform: {fileID: 5174107530019977249, guid: cb8d04917050b9249ac9abee4b6adf8b,
-    type: 3}
+  _PlayerTransform: {fileID: 0}
   _deathSound: {fileID: 8300000, guid: 7f8177ffb1d36d64bb53b16a276995d4, type: 3}
 --- !u!114 &4437377357990626898
 MonoBehaviour:
@@ -148,3 +134,16 @@ MonoBehaviour:
   _hitParticles: {fileID: 3432634598425089549, guid: fc20269ad763ecd43bbdf328b92b29b3,
     type: 3}
   invincible: 0
+--- !u!65 &-1071688837165934185
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681268091995207315}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

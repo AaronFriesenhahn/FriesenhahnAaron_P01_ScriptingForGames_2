@@ -20,6 +20,9 @@ public class Boss : Enemy
 
     [SerializeField] AudioClip _hitSound;
 
+    [SerializeField] ParticleSystem _chargeAtPlayerParticles;
+    [SerializeField] TrailRenderer _ChargeTrail;
+
     int minionsSpawned = 0;
     int movingStarted = 0;
     int rammedPlayer = 0;
@@ -29,6 +32,9 @@ public class Boss : Enemy
     private bool allowfire = true;
 
     Health _healthSystem;
+
+    //testing particle activation
+    bool _particleActivated = false;
 
     private void Awake()
     {
@@ -54,6 +60,7 @@ public class Boss : Enemy
         // if health is normal, perform a patrol and fire at player.
         if (_healthSystem._currentHealth == _healthSystem._maxHealth)
         {
+            _ChargeTrail.enabled = false;
             FireAtPlayer();
             //move to Destination1
             float patrolSpeed = 2f;
@@ -87,22 +94,28 @@ public class Boss : Enemy
         else if (_healthSystem._currentHealth == 4 || _healthSystem._currentHealth == 3)
         {
             //activate trail effect?
-            if (movingStarted == 0)
+            _ChargeTrail.enabled = true;
+            StartCoroutine(PauseBeforeSpawning());
+            if (_particleActivated == true)
             {
-                Debug.Log("Boss is moving.");
-                movingStarted = 1;
-            }
-            if (rammedPlayer == 0)
-            {
-                float speed = 10f;
-                var targetPosition = new Vector3(_PlayerTransform.position.x, transform.position.y, _PlayerTransform.position.z);
-                float step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
+                if (movingStarted == 0)
+                {
+                    Debug.Log("Boss is moving.");
+                    movingStarted = 1;
+                }
+                if (rammedPlayer == 0)
+                {
+                    float speed = 10f;
+                    var targetPosition = new Vector3(_PlayerTransform.position.x, transform.position.y, _PlayerTransform.position.z);
+                    float step = speed * Time.deltaTime;
+                    transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
+                }
             }
         }
         //if health is 2 or 1, spawn minions
         else if (_healthSystem._currentHealth == 2 && allowfire == true || _healthSystem._currentHealth == 1 && allowfire == true )
-        {            
+        {
+            _ChargeTrail.enabled = false;
             FireAtPlayer();
             if (minionsSpawned == 0)
             {
@@ -118,8 +131,13 @@ public class Boss : Enemy
 
     IEnumerator PauseBeforeSpawning()
     {
-        yield return new WaitForSeconds(2f);
-        //player warning particles
+        yield return new WaitForSeconds(1f);
+        if (_particleActivated == false)
+        {
+            _chargeAtPlayerParticles.Play();
+        }
+        yield return new WaitForSeconds(1f);
+        _particleActivated = true;
     }
 
     protected override void DeathFeedback()
@@ -146,9 +164,14 @@ public class Boss : Enemy
             if (hit != null)
             {
                 hit.TakeDamage(damage);
+                
             }
             ImpactFeedback();
             PlayerImpact();
+        }
+        else if (collision.collider.tag == "Projectile")
+        {
+            HitFeedback();
         }
         else if (collision.collider.tag == "Projectile" && _healthSystem._currentHealth == 0)
         {
@@ -168,7 +191,7 @@ public class Boss : Enemy
 
     IEnumerator PullBossBackwards()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
         rammedPlayer = 0;
     }
 
@@ -205,5 +228,21 @@ public class Boss : Enemy
         //play noise
         AudioHelper.PlayClip2D(_hitSound, 1f);
         //flash colors
+        StartCoroutine(BossHitFlash());
+        
+    }
+
+    IEnumerator BossHitFlash()
+    {
+        GameObject _BossBody;
+        _BossBody = GameObject.Find("BossTank/Art/Body");
+        Debug.Log("Boss has been hit. Coroutine started.");
+        _BossBody.GetComponent<Renderer>().material.color = Color.white;
+        yield return new WaitForSeconds(.2f);
+        _BossBody.GetComponent<Renderer>().material.color = Color.yellow;
+        yield return new WaitForSeconds(.2f);
+        _BossBody.GetComponent<Renderer>().material.color = Color.white;
+        yield return new WaitForSeconds(.2f);
+        _BossBody.GetComponent<Renderer>().material.color = Color.red;
     }
 }
