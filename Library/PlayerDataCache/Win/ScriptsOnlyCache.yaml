@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - Enemy
     - EnemyProjectile
     - Health
+    - HealthBar
     - HealthIncrease
     - Invincibility
     - Killer
@@ -32,6 +33,8 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Image
+    - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/Sandbox.unity:
@@ -63,6 +66,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 83
       Script: {instanceID: 0}
+    - Class: 96
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -74,43 +79,49 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9800}
     - Class: 114
+      Script: {instanceID: 9840}
+    - Class: 114
       Script: {instanceID: 10208}
     - Class: 114
       Script: {instanceID: 10212}
     - Class: 114
       Script: {instanceID: 10242}
     - Class: 114
-      Script: {instanceID: 10382}
+      Script: {instanceID: 10274}
     - Class: 114
-      Script: {instanceID: 10414}
+      Script: {instanceID: 10384}
     - Class: 114
-      Script: {instanceID: 10490}
+      Script: {instanceID: 10416}
     - Class: 114
       Script: {instanceID: 10492}
     - Class: 114
-      Script: {instanceID: 10524}
+      Script: {instanceID: 10494}
     - Class: 114
-      Script: {instanceID: 10530}
+      Script: {instanceID: 10526}
     - Class: 114
-      Script: {instanceID: 10574}
+      Script: {instanceID: 10532}
     - Class: 114
-      Script: {instanceID: 10632}
+      Script: {instanceID: 10576}
     - Class: 114
-      Script: {instanceID: 10734}
+      Script: {instanceID: 10634}
     - Class: 114
       Script: {instanceID: 10736}
     - Class: 114
-      Script: {instanceID: 10904}
+      Script: {instanceID: 10738}
     - Class: 114
-      Script: {instanceID: 11014}
+      Script: {instanceID: 10906}
     - Class: 114
-      Script: {instanceID: 11184}
+      Script: {instanceID: 11016}
     - Class: 114
-      Script: {instanceID: 11308}
+      Script: {instanceID: 11186}
     - Class: 114
-      Script: {instanceID: 11358}
+      Script: {instanceID: 11310}
     - Class: 114
-      Script: {instanceID: 11398}
+      Script: {instanceID: 11360}
+    - Class: 114
+      Script: {instanceID: 11392}
+    - Class: 114
+      Script: {instanceID: 11400}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -122,6 +133,8 @@ ScriptsOnlyBuild:
     - Class: 198
       Script: {instanceID: 0}
     - Class: 199
+      Script: {instanceID: 0}
+    - Class: 213
       Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
@@ -174,7 +187,7 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
-      Hash: f57e5dda1254621a24b27a815103a03b
+      Hash: 1888a72095c7505fad9330af4d4aaae8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -342,6 +355,12 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: c3d09d2468d8e197652edff8a98bc541
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HealthBar
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -444,7 +463,7 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 43383797da3bca1de1b39c0214f28867
+      Hash: b47c403bec6a7646beb1439214499e54
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Boss
