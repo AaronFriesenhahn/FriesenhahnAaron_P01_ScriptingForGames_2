@@ -433,7 +433,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: f0290000
+      m_SelectedIDs: 40260000
       m_LastClickedID: 0
       m_ExpandedIDs: 7afbffff
       m_RenameOverlay:
@@ -661,11 +661,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Scripts/Player
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Scripts/Player
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\aaron\Desktop\UnityProjects\Fall2021\Scripting for Games
     2\FriesenhahnAaron_P01_ScriptingForGames_2
@@ -673,9 +673,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: f22c0000
-    m_LastClickedID: 11506
-    m_ExpandedIDs: 00000000cc2c000000ca9a3b
+    m_SelectedIDs: 2a2f0000
+    m_LastClickedID: 12074
+    m_ExpandedIDs: 00000000cc2c0000f22c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
